@@ -1,21 +1,57 @@
 import React, { Component } from "react";
 import Layout from '../../components/Layout';
 import 'semantic-ui-css/semantic.min.css';
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Input, Message } from "semantic-ui-react";
+import factory from '../../ethereum/factory';
+import web3 from '../../ethereum/web3';
+import { Router } from '../../routes'; // from next-routes library
 
 class CampaignNew extends Component {
+    state = {
+        minimumContribution: '',
+        errorMessage: '',
+        loading: false
+    };
+
+    onSubmit = async (event) => {
+        event.preventDefault(); //keep browser from attempting to submit the form
+
+        this.setState({ loading: true, errorMessage: '' }); // set error message to empty string to clear it
+        try {
+            const accounts = await web3.eth.getAccounts();
+
+            // we can use our contract methods because we imported factory
+            await factory.methods.createCampaign(this.state.minimumContribution)
+                .send({
+                    from: accounts[0]
+                });
+
+            Router.pushRoute('/'); // redirect user to index route
+        } catch (err) {
+            this.setState({ errorMessage: err.message });
+        }
+
+        this.setState({ loading: false });
+    };
+
     render () {
         return (
             <Layout>
 
                 <h3>Create a Campaign</h3>
-                <Form>
+                <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
                     <Form.Field>
                         <label>Minimum Contribution</label>
-                        <input />
+                        <Input 
+                            label="wei" 
+                            labelPosition="right"
+                            value={this.state.minimumContribution}
+                            onChange={event => this.setState({ minimumContribution: event.target.value })}
+                        />
                     </Form.Field>
 
-                    <Button primary>Create</Button>
+                    <Message error header="Woops" content={this.state.errorMessage}/>
+                    <Button loading={this.state.loading} primary>Create</Button>
                 </Form>
             </Layout>
         );

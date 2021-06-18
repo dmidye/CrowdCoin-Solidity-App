@@ -5,7 +5,7 @@ import CampaignFactory from './build/CampaignFactory.json';
 // to be rewritten. Simply import this file instead.
 const instance = new web3.eth.Contract(
     CampaignFactory.abi,
-    '0xd0ad0EC806B35FEb52d2a19F45936190f00C6d06' // Address from running deploy script
+    '0x3418ac2948A799F761986991D7d04b6BB36E2239' // Address from running deploy script
 );
 
 export default instance;
