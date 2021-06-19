@@ -4,11 +4,11 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "fs-extra": "^10.0.0",
     "ganache-cli": "^6.12.2",
@@ -19,8 +19,21 @@
     "react-dom": "^17.0.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
-    "solc": "^0.8.4",
+    "solc": "^0.8.5",
     "truffle-hdwallet-provider": "0.0.3",
     "web3": "^1.3.6"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmidye/CrowdCoin-Solidity-App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dmidye/CrowdCoin-Solidity-App/issues"
+  },
+  "homepage": "https://github.com/dmidye/CrowdCoin-Solidity-App#readme",
+  "description": ""
 }
