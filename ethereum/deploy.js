@@ -6,7 +6,7 @@ const compiledFactory = require('./build/CampaignFactory.json');
 // specify what outside node to connect to
 
 const provider = new HDWalletProvider(
-    'brick else brown pitch raise common clay horse chronic ritual limit teach',
+    '',
     'https://rinkeby.infura.io/v3/e48309f186ba48398950be097508ecdf'
 );
 
